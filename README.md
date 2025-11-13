@@ -24,6 +24,7 @@ A full-stack web application for managing event registrations for university clu
 - **Node.js** - Runtime environment
 - **Express** - Web framework
 - **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment variable management
 
 ## Project Structure
 
@@ -66,6 +67,16 @@ npm install
 cd ../client
 npm install
 ```
+
+3. Set up environment variables:
+
+```bash
+# Copy example env files
+cp server/.env.example server/.env
+cp client/.env.example client/.env
+```
+
+Edit the `.env` files as needed (see [Environment Variables](#environment-variables) section below).
 
 ### Development
 
@@ -153,8 +164,22 @@ Registers a new attendee.
 
 ## Environment Variables
 
+### Server Environment Variables
+
+Create a `.env` file in the `server/` directory (copy from `server/.env.example`):
+
 - `PORT` - Server port (default: 3001)
 - `NODE_ENV` - Environment mode (`development` or `production`)
+
+The server uses `dotenv` to load these variables automatically.
+
+### Client Environment Variables
+
+Create a `.env` file in the `client/` directory (copy from `client/.env.example`):
+
+- `VITE_API_BASE_URL` - API base URL (leave empty for relative paths, or set to full URL like `http://localhost:3001`)
+
+**Note:** In Vite, environment variables must be prefixed with `VITE_` to be exposed to client code. Access them using `import.meta.env.VITE_*`.
 
 ## Scripts
 

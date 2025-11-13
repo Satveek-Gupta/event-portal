@@ -1,5 +1,7 @@
 import type { Attendee } from './types'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) {
     const message = await res
@@ -11,7 +13,7 @@ async function handle<T>(res: Response): Promise<T> {
 }
 
 export async function fetchAttendees(): Promise<Attendee[]> {
-  const res = await fetch('/api/attendees')
+  const res = await fetch(`${API_BASE_URL}/api/attendees`)
   return handle<Attendee[]>(res)
 }
 
@@ -24,7 +26,7 @@ export type RegistrationPayload = {
 }
 
 export async function registerAttendee(payload: RegistrationPayload): Promise<Attendee> {
-  const res = await fetch('/api/register', {
+  const res = await fetch(`${API_BASE_URL}/api/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
