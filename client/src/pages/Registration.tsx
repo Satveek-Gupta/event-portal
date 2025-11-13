@@ -104,19 +104,13 @@ export default function Registration() {
             </p>
           </div>
 
-          <dl className="grid gap-3 rounded-2xl bg-white/70 p-4 text-sm text-slate-600 shadow-inner ring-1 ring-slate-100 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-700">
-            <div className="flex items-center justify-between">
-              <dt className="font-medium text-slate-700 dark:text-slate-200">Date</dt>
-              <dd>Dec 10, 2025 · 9:00 AM – 5:00 PM</dd>
-            </div>
-            <div className="flex items-center justify-between">
-              <dt className="font-medium text-slate-700 dark:text-slate-200">Venue</dt>
-              <dd>Student Activity Center, Main Hall</dd>
-            </div>
-            <div className="flex items-center justify-between">
-              <dt className="font-medium text-slate-700 dark:text-slate-200">Tracks</dt>
-              <dd>Leadership · Finance · Tech · Outreach</dd>
-            </div>
+          <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 rounded-2xl bg-white/70 p-4 text-sm text-slate-600 shadow-inner ring-1 ring-slate-100 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-700">
+            <dt className="font-medium text-slate-700 dark:text-slate-200">Date</dt>
+            <dd>Dec 10, 2025 ⋅ 9:00 AM – 5:00 PM</dd>
+            <dt className="font-medium text-slate-700 dark:text-slate-200">Venue</dt>
+            <dd>Student Activity Center, Main Hall</dd>
+            <dt className="font-medium text-slate-700 dark:text-slate-200">Tracks</dt>
+            <dd>Leadership ⋅ Finance ⋅ Tech ⋅ Outreach</dd>
           </dl>
 
           <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">

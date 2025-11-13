@@ -1,43 +1,25 @@
 require('dotenv').config();
+const { createAttendee, findAttendeeByEmail } = require('../utils/data');
 
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const { readAttendees, createAttendee, findAttendeeByEmail } = require('./utils/data');
-
-const PORT = process.env.PORT || 3001;
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-const supabase = require('./utils/supabase');
-supabase.from('attendees').select('count').limit(1)
-  .then(() => {
-    console.log('✅ Supabase connected successfully');
-  })
-  .catch((error) => {
-    console.error('⚠️  Supabase connection test failed:', error.message);
-    console.error('   Make sure SUPABASE_URL and SUPABASE_ANON_KEY are set in .env');
-    console.error('   Server will continue but database operations may fail.');
-  });
-
-app.get('/api/attendees', async (req, res) => {
-  try {
-    const attendees = await readAttendees();
-    res.json(attendees);
-  } catch (error) {
-    console.error('Error reading attendees:', error);
-    const errorMessage = error.message || 'Unable to load attendees.';
-    res.status(500).json({ 
-      message: errorMessage,
-      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
-    });
+module.exports = async (req, res) => {
+  const origin = req.headers.origin;
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', '*');
   }
-});
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-app.post('/api/register', async (req, res) => {
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
+
   const { fullName, email, club, role, comments } = req.body || {};
 
   if (!fullName || !email || !club || !role) {
@@ -86,17 +68,5 @@ app.post('/api/register', async (req, res) => {
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
-});
+};
 
-if (process.env.NODE_ENV === 'production') {
-  const clientBuildPath = path.resolve(__dirname, '..', 'client', 'dist');
-  app.use(express.static(clientBuildPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-  });
-}
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});

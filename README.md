@@ -1,44 +1,56 @@
-# Event Portal
+# 🎟️ Event Portal
 
-A full-stack web application for managing event registrations for university clubs. This project features a modern React frontend with TypeScript and a Node.js/Express backend.
+A **full-stack web application** built to simplify **event registrations** and **attendee management** for university clubs.  
+The platform features a sleek **React + TypeScript frontend** and a **Node.js + Express backend** integrated with **Supabase**.
 
-## Features
+---
 
-- 🎫 **Event Registration**: Users can register for events with their details
-- 👥 **Attendee Management**: View all registered attendees
-- 🌓 **Dark Mode**: Toggle between light and dark themes
-- 📱 **Responsive Design**: Modern UI built with Tailwind CSS
-- 🔒 **Email Validation**: Server-side email validation and duplicate prevention
-- 💾 **JSON Storage**: Simple file-based storage for attendees data
+## 🚀 Features
 
-## Tech Stack
+- 🎫 **Event Registration** – Seamless event sign-ups with validation  
+- 👥 **Attendee Management** – View and manage all registered users  
+- 🌙 **Dark Mode** – Modern light/dark theme toggle  
+- 📱 **Responsive UI** – Tailwind-powered mobile-friendly design  
+- 🔒 **Email Validation** – Prevent duplicate and invalid entries  
+- 💾 **Supabase Storage** – Reliable and scalable cloud database
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **React Router** - Client-side routing
+- ⚛️ **React 19** – Component-based UI  
+- 🟦 **TypeScript** – Static typing and maintainability  
+- ⚡ **Vite** – Lightning-fast dev and build tool  
+- 🎨 **Tailwind CSS** – Utility-first responsive design  
+- 🔗 **React Router** – Client-side routing
 
 ### Backend
-- **Node.js** - Runtime environment
-- **Express** - Web framework
-- **CORS** - Cross-origin resource sharing
-- **dotenv** - Environment variable management
+- 🟩 **Node.js** – Server runtime  
+- 🚏 **Express 5** – Minimal and flexible web framework  
+- 🔐 **dotenv** – Environment variable management  
+- 🌐 **CORS** – Cross-origin resource sharing  
+- 🗄️ **Supabase** – Database and backend-as-a-service
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 event-portal/
-├── client/          # React frontend application
+├── client/               # React frontend
 │   ├── src/
-│   │   ├── pages/   # Page components (Home, Registration, Attendees)
-│   │   ├── api.ts   # API client functions
-│   │   └── types.ts # TypeScript type definitions
-│   └── dist/        # Production build output
-└── server/          # Express backend server
-    ├── index.js     # Main server file
-    └── attendees.json # Data storage (auto-generated)
+│   │   ├── pages/        # Pages (Home, Register, Attendees)
+│   │   ├── api.ts        # API functions
+│   │   └── types.ts      # Type definitions
+│   └── dist/             # Production build
+└── server/               # Express backend
+├── api/              # API routes
+│   ├── register.js
+│   └── attendees.js
+├── utils/            # Utility files
+│   └── data.js
+└── index.js          # Server entry point
 ```
 
 ## Getting Started
@@ -170,8 +182,10 @@ Create a `.env` file in the `server/` directory (copy from `server/.env.example`
 
 - `PORT` - Server port (default: 3001)
 - `NODE_ENV` - Environment mode (`development` or `production`)
+- `MONGODB_URI` - MongoDB connection string (required)
 
 The server uses `dotenv` to load these variables automatically.
+
 
 ### Client Environment Variables
 
@@ -193,9 +207,6 @@ Create a `.env` file in the `client/` directory (copy from `client/.env.example`
 - `npm start` - Start production server
 - `npm run dev` - Start development server with nodemon
 
-## Data Storage
-
-Attendee data is stored in `server/attendees.json`. This file is automatically created if it doesn't exist. For production use, consider migrating to a proper database (PostgreSQL, MongoDB, etc.).
 
 ## Contributing
 

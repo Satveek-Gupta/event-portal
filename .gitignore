@@ -63,3 +63,5 @@ coverage/
 # Server data (optional - uncomment if you don't want to track attendees.json)
 # server/attendees.json
 
+SUPABASE_SETUP.md
+VERCEL_DEPLOYMENT.md
